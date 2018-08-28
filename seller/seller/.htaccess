@@ -1,0 +1,14 @@
+# Turn Rewrite Engine On
+RewriteEngine on
+
+# Rewrite for login.php
+RewriteRule ^login$ access_system.php [NC,L]
+# Rewrite for logoff_user.php
+RewriteRule ^logoff$ access/logoff_user.php [NC,L]
+# Rewrite for login_user.php
+RewriteRule ^user_access$ access/login_user.php [NC,L]
+
+# Rewrite for home_system.php
+RewriteRule ^dashboard$ home_system.php [NC,L]
+# Rewrite for stock.php
+RewriteRule ^stock$ stock.php [NC,L]

@@ -108,7 +108,7 @@ function isSecure() {
 			<div class="slider-op">
 				<div class="container">
 					<div class="row">
-						<div class="col-md-8">
+						<div class="col-md-12">
 							<div class="slider-sec-text">
 								<div class="cd-intro">
 									<h3 class="color-w font-28 txt-lft pb-10 ltr-s-4"> Combating non communicable </h3>

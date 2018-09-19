@@ -8,15 +8,28 @@
 		if($user){
 			$user_data = get_user($user);
 
-			$user_data['cooperative'] = is_cooperative_leader($user);
-			$user_data['cooperativeId'] = is_cooperative_leader($user)['cooperative'];
-
 			//keeping the userId
 			$currentUserId = $thisid = $user;
+
+			$currentUserNames = $user_data['names'];
+
+			//checking types
+			WEB::loadClass('user');
+    		$userTypes = $User->types($currentUserId);
+
+    		//for now let's take first type
+    		$currentUserType = $userTypes[0];
+
+			$currentUser = (object)$user_data;
+
+			//check the default image
+			if(!$currentUser->profile_picture){
+				$currentUser->profile_picture = '/images/users/default.jpg';
+			}
 		}else{
-			header("location:login.php");
+			header("location:login");
 		}
 	}else{
-		header("location:login.php");
+		header("location:login");
 	}
 ?>

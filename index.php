@@ -11,7 +11,6 @@ function isSecure() {
 // 		header("location:$nurl");
 // 		die();
 // };
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -241,7 +240,7 @@ function isSecure() {
 
 <div class="container">
 	<div class="col-md-12">
-		<a href="win" class="btn">ACCESS</a>
+		<a href="dashboard" class="btn">ACCESS</a>
 	</div>
 </div>
 

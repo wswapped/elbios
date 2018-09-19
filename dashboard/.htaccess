@@ -1,7 +1,0 @@
-# Turn Rewrite Engine On
-RewriteEngine on
-
-# Rewrite for login.php
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^ index.php [NC,L]

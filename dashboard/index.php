@@ -1,239 +1,199 @@
 <?php
     ob_start();
+
+    //getting requested pages
+    //checking the page
+    $reqURI = trim($_SERVER['REQUEST_URI']??"", "/");
+
+    //REMOVING GET_VARIABLES
+    if($pos  = strripos($reqURI, "?")){
+        //here get are sent
+        $reqURI = substr_replace($reqURI, '', $pos);
+    }
+
+    $req_parts = explode("/", $reqURI);
+
+
+    //remove all the parts before admin/
+    $projectname = 'dashboard';
+    $s = array_search($projectname, $req_parts);
+    for ($n=$s; $n >= 0; $n--) {
+        unset($req_parts[$n]);
+    }
+
+    $req_parts = array_values($req_parts);
+
+    $current_page_action = $base_page = $req_parts[0]??'home'; #base required page
+    // die();
+    if($base_page == 'login' || $base_page == 'accountinvitationconfirm'){
+        include_once "pages/$base_page.php";
+        die();
+    }
+
+    //constants
+    define('DB_DATE_FORMAT', 'Y-m-d H:i:s');
+    define('STANDARD_DATE_FORMAT', 'd-m-Y');
+
     include_once '../conn.php';
     include_once '../functions.php';
+    require '../core/web.php';
+    require_once '../core/user.php';
+
+
+    //list of core classes to load
+    $listToLoad = array('location', 'cooperative', 'crop', 'product', 'purchasingOrder', 'measurement', 'message', 'supplier', 'warehouse', 'manufacturer', 'notification');
+
+    foreach ($listToLoad as $key => $module) {
+        # code...
+        require "../core/$module.php";
+    }
+
     require 'auth.php';
-    require 'core/location.php';
-    require 'core/cooperative.php';
-    require 'core/crop.php';
-    require 'core/product.php';
-    require 'core/purchasingOrder.php';
-    require 'core/message.php';
-    require 'core/institution.php';
-    require 'core/seller.php';
+    
     $user_name = $user_data['name']??"";
     $current_user_pic = $user_data['profile_picture'];
     $standard_date = "d/m/Y";
     $standard_time = $standard_date." H:i";
 
-    $current_cooperative = $user_data['cooperativeId'];
-
-    //keeping coop_name for usage
-    $current_cooperative_data = $Cooperative->get_cooperative($current_cooperative);
-    $current_cooperative_name = $current_coop_name = $current_cooperative_data['name'];
-    $current_coop_image = $current_cooperative_data['cooperativeImage'];
+    //Check requested route existence
+    $pageFile = "pages/$base_page.php";
+    if(!file_exists($pageFile)){
+        $pageFile = "pages/404.php";
+    }
 ?>
-<!doctype html>
- <html lang="en"> 
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <?php
         $title = "Welcome $user_name";
-        include_once "scripts/head.php";
+        include_once "modules/head.php";
     ?>
-
-    <!-- additional styles for plugins -->
-    <!-- weather icons -->
-    <link rel="stylesheet" href="bower_components/weather-icons/css/weather-icons.min.css" media="all">
-    <!-- metrics graphics (charts) -->
-    <link rel="stylesheet" href="bower_components/metrics-graphics/dist/metricsgraphics.css">
-    <!-- chartist -->
-    <link rel="stylesheet" href="bower_components/chartist/dist/chartist.min.css">
-    
-    <!-- select2 -->
-    <link rel="stylesheet" href="bower_components/select2/dist/css/select2.min.css">
-
-    <!-- flag icons -->
-    <link rel="stylesheet" href="assets/icons/flags/flags.min.css" media="all">
-
-
-    <!-- themes -->
-    <link rel="stylesheet" href="assets/css/themes/themes_combined.min.css" media="all">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <!-- Dropify -->
-    <link rel="stylesheet" href="assets/skins/dropify/css/dropify.css">
-
+    <script type="text/javascript">
+        const currentUserId = "<?php echo $currentUserId; ?>";
+        const apiLink = "/api/index.php";
+    </script>
 </head>
-<body class="disable_transitions sidebar_main_open sidebar_main_swipe">
-    <?php
 
-        //getting requested pages
-        //checking the page
-        $reqURI = trim($_SERVER['REQUEST_URI']??"", "/");
-
-
-        //REMOVING GET_VARIABLES
-        if($pos  = strripos($reqURI, "?")){
-            //here get are sent
-            $reqURI = substr_replace($reqURI, '', $pos);
-        }
-
-        $req_parts = explode("/", $reqURI);
-
-
-        //remove all the parts before admin/
-        $s = array_search("dashboard", $req_parts);
-        for ($n=$s; $n >= 0; $n--) {
-            unset($req_parts[$n]);
-        }
-
-        $req_parts = array_values($req_parts);
-
-        $current_page_action = $base_page = $req_parts[0]??'home'; #base required page
-    ?>
-    <!-- main header -->
-    <?php include 'navs.php'; ?>
-    <!-- main header end -->
-    <!-- main sidebar -->
-    <?php include 'sidebar.php'; ?>
-    <div id="page_content">
-        <div id="page_content_inner">
-
-            <!-- statistics (small charts) -->
-            <!-- circular charts -->
-            <!-- summary report panel -->
-            
-            <!-- end of summary report panel -->
-            <!-- tasks -->
-            <?php
-                $valid_pages = array('home', 'pricing', 'field', 'communication', 'products', 'information', 'crops', 'harvest', 'sell', 'inputs', 'pesticides', 'land', 'information', 'orders');
-                $redirect_pages = array('logout', 'access');
-
-                //Check requested route
-                if(is_int(array_search($base_page, $valid_pages))){
-                    include $base_page.".php";
-                }else if(is_int(array_search($base_page, $redirect_pages))){
-                    header("location:$base_page.php");
-                }else{
-                    include "404.php" ;
-                }
-            ?>
-        </div>
+<body class="fix-header">
+    <!-- ============================================================== -->
+    <!-- Preloader -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
     </div>
+    <!-- ============================================================== -->
+    <!-- Wrapper -->
+    <!-- ============================================================== -->
+    <div id="wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <?php
+            include_once "modules/menu.php";
+        ?>
+        <!-- End Top Navigation -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <?php include_once "modules/sidebar.php"; ?>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page Content -->
+        <!-- ============================================================== -->
+        <div id="page-wrapper">
+            <?php include_once "$pageFile"; ?>
 
-    <!-- secondary sidebar -->
-    <?php include 'activities.php'; ?>
-    <!-- secondary sidebar end -->
+
+            <!-- ============================================================== -->
+            <!-- start right sidebar -->
+            <!-- ============================================================== -->
+
+            <?php include_once "modules/rightSidebar.php"; ?>
+
+            <!-- ============================================================== -->
+            <!-- end right sidebar -->
+            <!-- ============================================================== -->
+            <footer class="footer text-center"> <?php echo date("Y") ?> &copy; Intelligent warehouse for MPPD in courtesy of Rwanda Community </footer>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page Content -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="../plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Menu Plugin JavaScript -->
+    <script src="../plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+    <!--slimscroll JavaScript -->
+    <script src="js/jquery.slimscroll.js"></script>
+    <!--Wave Effects -->
+    <script src="js/waves.js"></script>
+    <!--Morris JavaScript -->
+    <script src="../plugins/bower_components/raphael/raphael-min.js"></script>
+    <script src="../plugins/bower_components/morrisjs/morris.js"></script>
+    <!-- chartist chart -->
+    <script src="../plugins/bower_components/chartist-js/dist/chartist.min.js"></script>
+    <script src="../plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
+    <!-- Calendar JavaScript -->
+    <script src="../plugins/bower_components/moment/moment.js"></script>
+    <script src='../plugins/bower_components/calendar/dist/fullcalendar.min.js'></script>
+    <script src="../plugins/bower_components/calendar/dist/cal-init.js"></script>
+
+    <script src="../plugins/bower_components/datatables/datatables.min.js"></script>
+    <!-- start - This is for export functionality only -->
+    <script src="cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+    <script src="cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script src="cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+    <!-- end - This is for export functionality only -->
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/custom.min.js"></script>
+    <script src="js/dashboard1.js"></script>
+    <!-- Custom tab JavaScript -->
+    <script src="js/cbpFWTabs.js"></script>
+
+    <!-- Select2 -->
+    <script>
+        $(function() {
+            // For select 2
+            $(".select2").select2();
+        });
+    </script>
+    <script src="../plugins/bower_components/custom-select/dist/js/select2.full.min.js" type="text/javascript"></script>
+
 
     <script type="text/javascript">
-        // variables declaration
-        const current_cooperative = "<?php echo $user_data['cooperativeId']; ?>";
-        const current_user = "<?php echo $user; ?>";
-        const api_link = "../api/index.php";
-    </script>
-
-    <!-- google web fonts -->
-    <script>
-        WebFontConfig = {
-            google: {
-                families: [
-                    'Source+Code+Pro:400,700:latin',
-                    'Roboto:400,300,500,700,400italic:latin'
-                ]
-            }
-        };
-        (function() {
-            var wf = document.createElement('script');
-            wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-            '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-            wf.type = 'text/javascript';
-            wf.async = 'true';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(wf, s);
-        })();
-    </script>
-
-    <!-- common functions -->
-    <script src="assets/js/common.min.js"></script>
-    <!-- uikit functions -->
-    <script src="assets/js/uikit_custom.min.js"></script>
-    <!-- altair common functions/helpers -->
-    <script src="assets/js/altair_admin_common.min.js"></script>
-
-    <!-- page specific plugins -->
-        <!-- d3 -->
-        <script src="bower_components/d3/d3.min.js"></script>
-        <!-- metrics graphics (charts) -->
-        <script src="bower_components/metrics-graphics/dist/metricsgraphics.min.js"></script>
-        <!-- chartist (charts) -->
-        <script src="bower_components/chartist/dist/chartist.min.js"></script>
-        <!-- maplace (google maps) -->
-        <script src="http://maps.google.com/maps/api/js"></script>
-        <script src="bower_components/maplace-js/dist/maplace.min.js"></script>
-        <!-- peity (small charts) -->
-        <script src="bower_components/peity/jquery.peity.min.js"></script>
-        <!-- easy-pie-chart (circular statistics) -->
-        <script src="bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
-        <!-- countUp -->
-        <script src="bower_components/countUp.js/dist/countUp.min.js"></script>
-        <!-- handlebars.js -->
-        <script src="bower_components/handlebars/handlebars.min.js"></script>
-        <script src="assets/js/custom/handlebars_helpers.min.js"></script>
-        <!-- CLNDR -->
-        <script src="bower_components/clndr/clndr.min.js"></script>
-
-        <!--  dashbord functions -->
-        <script src="assets/js/pages/dashboard.min.js"></script>
-
-        <!-- datatables -->
-        <script src="bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
-        <!-- datatables buttons-->
-        <script src="bower_components/datatables-buttons/js/dataTables.buttons.js"></script>
-        <script src="assets/js/custom/datatables/buttons.uikit.js"></script>
-        <script src="bower_components/jszip/dist/jszip.min.js"></script>
-        <script src="bower_components/pdfmake/build/pdfmake.min.js"></script>
-        <script src="bower_components/pdfmake/build/vfs_fonts.js"></script>
-        <script src="bower_components/datatables-buttons/js/buttons.colVis.js"></script>
-        <script src="bower_components/datatables-buttons/js/buttons.html5.js"></script>
-        <script src="bower_components/datatables-buttons/js/buttons.print.js"></script>
-        
-        <!-- datatables custom integration -->
-        <script src="assets/js/custom/datatables/datatables.uikit.min.js"></script>
-
-        <!--  datatables functions -->
-        <script src="assets/js/pages/plugins_datatables.min.js"></script>
-
-        <!-- Dropify -->
-        <script src="bower_components/dropify/dist/js/dropify.min.js"></script>
-
-
-        <?php
-            echo $page_js??"";
-
-            for($n=0; !empty($js_files) && $n<count($js_files) && is_array($js_files); $n++){
-                $pfile = $js_files[$n];
-                ?>
-                    <script type="text/javascript" src="<?php echo $pfile ?>"></script>
-                <?php
-            }
-        ?>
-    <script>
-
-        $(".input-number").on('keypress', function(e){
-            if(isNaN(e.key)){
-                alert("Numbers only allowed")
-                return false;
-            }
-        })
-
-        $(function() {
-            if(isHighDensity()) {
-                $.getScript( "assets/js/custom/dense.min.js", function(data) {
-                    // enable hires images
-                    altair_helpers.retina_images();
-                });
-            }
-            if(Modernizr.touch) {
-                // fastClick (touch devices)
-                FastClick.attach(document.body);
-            }
+    (function() {
+        [].slice.call(document.querySelectorAll('.sttabs')).forEach(function(el) {
+            new CBPFWTabs(el);
         });
-        $window.load(function() {
-            // ie fixes
-            altair_helpers.ie_fix();
-        });
-
-        $('.dropify').dropify();
+    })();
     </script>
+    <?php
+        for($n=0; !empty($js_files) && $n<count($js_files) && is_array($js_files); $n++){
+            $pfile = $js_files[$n];
+            ?>
+                <script type="text/javascript" src="<?php echo $pfile ?>"></script>
+            <?php
+        }
+    ?>
+    <script src="../plugins/bower_components/toast-master/js/jquery.toast.js"></script>
+    <!--Style Switcher -->
+    <script src="../plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
 </body>
 </html>

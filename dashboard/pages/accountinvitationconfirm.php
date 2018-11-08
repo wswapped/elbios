@@ -37,7 +37,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="icon" type="image/png" sizes="16x16" href="../logo.png">
-<title>Intelliware</title>
+<title>elbios</title>
 <!-- Bootstrap Core CSS -->
 <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 <!-- animation CSS -->
@@ -66,7 +66,7 @@
 <section class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<h1>Welcome to Intelliware WMS</h1>
+			<h1>Welcome to elbios WMS</h1>
 			<p>Thank you for accepting our invitation to working together</p>
 			<p>Please set up your account here</p>
 		</div>

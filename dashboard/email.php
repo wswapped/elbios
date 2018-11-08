@@ -1,7 +1,7 @@
     <!DOCTYPE html>
     <html>
     <head>
-        <title>Intelliware email design</title>
+        <title>elbios email design</title>
         <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
         <style type="text/css">
             *{
@@ -55,7 +55,7 @@
     <body>
         <div class="bg-blur">
             <div class="nav">
-                <p>Intelliware</p>
+                <p>elbios</p>
                 <small class="slogan">Intelligent and automatic warehouse system</small>
             </div>
             <div class="container">
@@ -66,7 +66,7 @@
                     <li>+250784762982</li>
                     <li>placidelunis@gmail.com</li>
                 </ul>
-                <p>Intelliware &copy; <?php echo date('Y'); ?></p>
+                <p>elbios &copy; <?php echo date('Y'); ?></p>
             </footer>
         </div>
     </body>

@@ -1,5 +1,4 @@
 <?php
-	include_once "dashboard/core/Function.inc.php";
 
 
 	function check_user($userData, $dataType = 'farmerId'){

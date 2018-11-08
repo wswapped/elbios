@@ -118,7 +118,7 @@
             <!-- ============================================================== -->
             <!-- end right sidebar -->
             <!-- ============================================================== -->
-            <footer class="footer text-center"> <?php echo date("Y") ?> &copy; Intelligent warehouse for MPPD in courtesy of Rwanda Community </footer>
+            <footer class="footer text-center"> <?php echo date("Y") ?> &copy; Elbios </footer>
         </div>
         <!-- ============================================================== -->
         <!-- End Page Content -->

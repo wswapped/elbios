@@ -33,6 +33,8 @@
 			
 			if($details['account_type'] == 'admin')
 				$types = array_merge($types, array('admin'));
+			else if($details['account_type'] == 'client')
+				$types = array_merge($types, array('client'));
 
 			//check if He's a supplier
 			WEB::loadClass('supplier');

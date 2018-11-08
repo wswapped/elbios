@@ -8,6 +8,8 @@
     <?php
         if($currentUserType == 'supplier'){
             include_once 'pages/supplierHome.php';
+        }else if($currentUserType == 'client'){
+            include_once 'pages/clientHome.php';
         }else{
     ?>
 

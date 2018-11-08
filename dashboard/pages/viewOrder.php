@@ -302,7 +302,7 @@
                                 <nav>
                                     <ul>
                                         <li><a href="#section-underline-1" class="sticon ti-home"><span>Your format</span></a></li>
-                                        <li><a href="#section-underline-2" class="sticon ti-export"><span>Intelliware</span></a></li>
+                                        <li><a href="#section-underline-2" class="sticon ti-export"><span>elbios</span></a></li>
                                     </ul>
                                 </nav>
                                 <div class="content-wrap">
@@ -321,7 +321,7 @@
                                     <section id="section-underline-2">
                                         <h2>WMS Format</h2>
                                         <p>
-                                        	Upload purchase order prepared with the predefined formats obtained from Intelliware WMS formats
+                                        	Upload purchase order prepared with the predefined formats obtained from elbios WMS formats
                                         </p>
                                         <div class="form-group">
 		                                    <label class="col-sm-12">File upload</label>

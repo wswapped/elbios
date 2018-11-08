@@ -235,14 +235,14 @@
                                 <nav>
                                     <ul>
                                         <li><a href="#section-underline-1" class="sticon ti-home"><span>E-procurement</span></a></li>
-                                        <li><a href="#section-underline-2" class="sticon ti-export"><span>Intelliware</span></a></li>
+                                        <li><a href="#section-underline-2" class="sticon ti-export"><span>elbios</span></a></li>
                                     </ul>
                                 </nav>
                                 <div class="content-wrap">
                                     <section id="section-underline-1">
                                         <h3>E-procurement purchase order</h3>
                                         <p>
-                                        	Contract created using E-procurement is uploaded here to Intelliware WMS. Upload the contract file.
+                                        	Contract created using E-procurement is uploaded here to elbios WMS. Upload the contract file.
                                         </p>
                                     	<div class="form-group">
 		                                    <label class="col-sm-12">File upload</label>
@@ -256,7 +256,7 @@
                                     <section id="section-underline-2">
                                         <h2>WMS Format</h2>
                                         <p>
-                                        	Upload purchase order prepared with the predefined formats obtained from Intelliware WMS formats
+                                        	Upload purchase order prepared with the predefined formats obtained from elbios WMS formats
                                         </p>
                                         <div class="form-group">
 		                                    <label class="col-sm-12">File upload</label>

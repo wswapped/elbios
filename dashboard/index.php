@@ -1,6 +1,5 @@
 <?php
     ob_start();
-    die();
     //getting requested pages
     //checking the page
     $reqURI = trim($_SERVER['REQUEST_URI']??"", "/");

@@ -59,6 +59,7 @@
     if(!file_exists($pageFile)){
         $pageFile = "pages/404.php";
     }
+    die($pageFile);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -105,7 +106,7 @@
         <!-- Page Content -->
         <!-- ============================================================== -->
         <div id="page-wrapper">
-            <?php die($pageFile); include_once "$pageFile"; ?>
+            <?php include_once "$pageFile"; ?>
 
 
             <!-- ============================================================== -->

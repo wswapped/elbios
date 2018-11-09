@@ -43,6 +43,8 @@ if($action == 'add_data'){
 	$userId = $request['userId']??'';
 	$temp = $request['temp']??'';
 	$rate = $request['rate']??'';
+	$long = $request['long']??'';
+	$lat = $request['lat']??'';
 
 	if(!empty($userId)){
 		$query = $conn->query("INSERT INTO sensordata(userCode, temp, rate) VALUES(\"$userId\", \"$temp\", \"$rate\")");

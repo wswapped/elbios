@@ -21,6 +21,7 @@
     $req_parts = array_values($req_parts);
     $current_page_action = $base_page = $req_parts[0]??'home'; #base required page
     
+    die();
     if($base_page == 'login' || $base_page == 'accountinvitationconfirm'){
         die($base_page);
         include_once "pages/$base_page.php";

@@ -4,7 +4,6 @@
     //getting requested pages
     //checking the page
     $reqURI = trim($_SERVER['REQUEST_URI']??"", "/");
-    die($reqURI);
     //REMOVING GET_VARIABLES
     if($pos  = strripos($reqURI, "?")){
         //here get are sent
@@ -106,7 +105,7 @@
         <!-- Page Content -->
         <!-- ============================================================== -->
         <div id="page-wrapper">
-            <?php include_once "$pageFile"; ?>
+            <?php die($pageFile); include_once "$pageFile"; ?>
 
 
             <!-- ============================================================== -->

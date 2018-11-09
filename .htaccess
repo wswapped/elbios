@@ -8,3 +8,5 @@
 	RewriteCond %(REQUEST_FILENAME) !-d
 	RewriteRule ^dashboard/([a-z0-9]+)$ /dashboard/index.php [L]
 </Ifmodule>
+
+sdsd

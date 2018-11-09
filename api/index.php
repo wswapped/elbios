@@ -39,14 +39,20 @@ $action = $request['action']??"";
 
 //return wrapper
 $response = array();
-if($action == 'get_members'){
-	//members of coooperative
-	$cooperative = $request['cooperative']??"";
+if($action == 'add_data'){
+	$userId = $request['userId']??'';
+	$temp = $request['temp']??'';
+	$rate = $request['rate']??'';
 
-	$members = $Cooperative->get_members($cooperative);
-
-	if(is_array($members)){
-		$response = array('status'=>true, 'data'=>$members);
+	if(!empty($userId)){
+		$query = $conn->query("INSERT INTO sensordata(userCode, temp, rate) VALUES(\"$userId\", \"$temp\", \"$rate\")");
+		if($query){
+			$response = 'done';
+		}else{
+			$response = 'failed';
+		}
+	}else{
+		$response = 'add data please';
 	}
 }else if($action == 'add_cooperative_member'){
 	//adding member to cooperative

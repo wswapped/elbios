@@ -10,7 +10,6 @@
     }
 
     $req_parts = explode("/", $reqURI);
-    die("skdsd");
 
     //remove all the parts before admin/
     $projectname = 'dashboard';

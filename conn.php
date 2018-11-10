@@ -1,7 +1,7 @@
 <?php
 	$dbName = 'elbios';
-	$con = $conn = new mysqli('localhost', 'camerwa', '5rReqJs5lthAFUNJ', $dbName);
+	$con = $conn = new mysqli('localhost', 'elbios', '5rReqJs5lthAFUNJ', $dbName);
 	if(!$conn){
-		die($conn->connect_error);
+		die("Connection error ".$conn->connect_error);
 	}
 ?>

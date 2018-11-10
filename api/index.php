@@ -51,7 +51,7 @@ if($action == 'addData'){
 		if($query){
 			$response = 'done';
 		}else{
-			$response = 'failed';
+			$response = 'failed '.$conn->error;
 		}
 	}else{
 		$response = 'add data please';

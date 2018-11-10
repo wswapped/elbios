@@ -39,7 +39,7 @@ $action = $request['action']??"";
 
 //return wrapper
 $response = array();
-if($action == 'add_data'){
+if($action == 'addData'){
 	$userId = $request['userId']??'';
 	$temp = $request['temp']??'';
 	$rate = $request['rate']??'';
@@ -47,7 +47,7 @@ if($action == 'add_data'){
 	$lat = $request['lat']??'';
 
 	if(!empty($userId)){
-		$query = $conn->query("INSERT INTO sensordata(userCode, temp, rate) VALUES(\"$userId\", \"$temp\", \"$rate\")");
+		$query = $conn->query("INSERT INTO sensordata(userCode, temp, rate, lat, lng) VALUES(\"$userId\", \"$temp\", \"$rate\", \"$lat\", \"$long\")");
 		if($query){
 			$response = 'done';
 		}else{

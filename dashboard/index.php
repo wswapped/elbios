@@ -33,6 +33,7 @@
     include_once '../functions.php';
     require '../core/web.php';
     require_once '../core/user.php';
+    require_once '../core/client.php';
 
 
     //list of core classes to load

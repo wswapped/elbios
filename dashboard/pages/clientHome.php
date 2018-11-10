@@ -1,3 +1,6 @@
+<?php
+    $data = $Client->data($currentUserId);
+?>
 <div class="row">
     <div class="col-sm-12">
         <div class="white-box">
@@ -28,7 +31,7 @@
                             <span class="circle circle-md bg-info"><i class="fas fa-heartbeat"></i></span>
                         </li>
                         <li class="col-last">
-                            <h3 class="counter text-right m-t-15">76</h3>
+                            <h3 class="counter text-right m-t-15"><?=$data['rate']?> bpm</h3>
                         </li>
                         <li class="col-middle">
                             <h4>Latest heartbeat</h4>
@@ -46,10 +49,10 @@
                             <span class="circle circle-md bg-success"><i class="fas fa-user-secret"></i></span>
                         </li>
                         <li class="col-last">
-                            <h3 class="counter text-right m-t-15">93</h3>
+                            <h3 class="counter text-right m-t-15"><?=$data['temp']?> &#8451;</h3>
                         </li>
                         <li class="col-middle">
-                            <h4>Latest stress</h4>
+                            <h4>Latest temperature</h4>
                             <div class="progress">
                                 <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
                                     <span class="sr-only">40% Complete (success)</span>

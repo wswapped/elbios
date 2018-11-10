@@ -19,6 +19,17 @@
 			return $data;
 		}
 
+		public function data($userId)
+		{
+			# Latest data
+			global $conn;
+			$sql = "SELECT * FROM sensordata WHERE userCode = \"$userId\" ORDER BY createdDate DESC LIMIT 1";
+			$query = $conn->query($sql) or trigger_error("Error wit insertion $conn->error");
+			$data = $query->fetch_assoc();
+
+			return $data;
+		}
+
 		public function list()
 		{
 			# returns list of suppliers

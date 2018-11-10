@@ -7,7 +7,7 @@ header('Content-Type: application/json');
 // include_once '../conn.php';
 define('DB_DATE_FORMAT', 'Y-m-d H:i:s');
 //InventoryDb
-include_once '../stock/db.php';
+include_once '../conn.php';
 include_once '../functions.php';
 
 include_once '../core/location.php';

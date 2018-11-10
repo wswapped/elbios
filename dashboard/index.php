@@ -21,12 +21,13 @@
     $req_parts = array_values($req_parts);
     $current_page_action = $base_page = $req_parts[0]??'home'; #base required page
     
-    die();
+##die("there again");    
     if($base_page == 'login' || $base_page == 'accountinvitationconfirm'){
-        die($base_page);
+        ##die($base_page);
         include_once "pages/$base_page.php";
         die();
     }
+die("We reach there");
 
     //constants
     define('DB_DATE_FORMAT', 'Y-m-d H:i:s');

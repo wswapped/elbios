@@ -11,7 +11,7 @@ $(document).ready(function () {
 		labels.push(stringDate)
 		series.push([sData['temp'], sData['rate']])
 
-		if(i>25)
+		if(i>10)
 			break;
 	}
 	new Chartist.Line('#temp-pulse', {

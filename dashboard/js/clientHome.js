@@ -4,7 +4,11 @@ $(document).ready(function () {
 	series = []
 	for(var i = 0; i<userData.length; i++){
 		sData = userData[i]
-		labels.push(sData['createdDate'], 1)
+
+		date = new Date(sData['createdDate'])
+		stringDate = date.getHours()+":"+date.getMinutes()
+
+		labels.push(stringDate)
 		series.push([sData['temp'], sData['rate']])
 
 		if(i>25)

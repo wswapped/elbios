@@ -1,5 +1,5 @@
 <?php
-    $data = $Client->data($currentUserId);
+    $data = $Client->latestData($currentUserId);
 ?>
 <div class="row">
     <div class="col-sm-12">
@@ -95,7 +95,7 @@
                     <h5><i class="fa fa-circle m-r-5 text-danger"></i>Pulse</h5>
                 </li>
             </ul>
-            <div id="ct-visits" style="height: 285px;"></div>
+            <div id="temp-pulse" style="height: 285px;"></div>
         </div>
     </div>
     <div class="col-md-6 col-lg-3 col-sm-6 col-xs-12">
@@ -145,3 +145,9 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    let userData = <?php echo json_encode($Client->data($currentUserId)) ?>;
+</script>
+<?php
+    $js_files[] = 'js/clientHome.js';
+?>

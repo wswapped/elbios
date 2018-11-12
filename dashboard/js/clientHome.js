@@ -2,10 +2,13 @@
 $(document).ready(function () {
 	labels = [];
 	series = []
-	for(var i=0; i<userData.length; i++){
+	for(var i = 0; i<userData.length; i++){
 		sData = userData[i]
 		labels.push(sData['createdDate'], 1)
 		series.push([sData['temp'], sData['rate']])
+
+		if(i>25)
+			break;
 	}
 	new Chartist.Line('#temp-pulse', {
 			labels:labels,

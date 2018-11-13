@@ -1,5 +1,6 @@
 <?php
     $data = $Client->latestData($currentUserId);
+    $Notifications = $Notification->list($currentUserId);
 ?>
 <div class="row">
     <div class="col-sm-12">

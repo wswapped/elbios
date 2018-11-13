@@ -14,7 +14,6 @@
 			global $conn;
 			$query = $conn->query("SELECT * FROM user_notifications WHERE id = \"$id\" LIMIT 1 ") or trigger_error("Error $conn->error");
 			$data = $query->fetch_assoc();
-
 			return $data;
 		}
 
@@ -23,7 +22,15 @@
 			# returns list of unread notifications
 			global $conn;
 			$sql = "SELECT * FROM user_notifications WHERE readStatus = 0 AND user = \"$userId\" ORDER BY createdDate DESC ";
-			// echo "$sql";
+			$query = $conn->query($sql) or trigger_error("Error $conn->error");
+			return $query->fetch_all(MYSQLI_ASSOC);
+		}
+
+		public function list($userId)
+		{
+			# returns list of all notifications
+			global $conn;
+			$sql = "SELECT * FROM user_notifications WHERE archived = 'no' AND user = \"$userId\" ORDER BY createdDate DESC ";
 			$query = $conn->query($sql) or trigger_error("Error $conn->error");
 			return $query->fetch_all(MYSQLI_ASSOC);
 		}

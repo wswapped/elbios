@@ -1,4 +1,4 @@
-//ct-visits
+//temp-pulse
 $(document).ready(function () {
 	labels = [];
 	series = []
@@ -46,20 +46,20 @@ for(var i = 0; i<userData.length; i++){
 	if(i>20)
 		break;
 }
-console.log(series)
+
 Morris.Area({
-        element: 'temp-pulse',
-        data: series,
-        xkey: 'period',
-        ykeys: ['temp', 'rate', 'itouch'],
-        labels: ['Temp', 'Heart rate', 'Steps'],
-        pointSize: 3,
-        fillOpacity: 0,
-        pointStrokeColors:['#00bfc7', '#fdc006', '#9675ce'],
-        behaveLikeLine: true,
-        gridLineColor: '#e0e0e0',
-        lineWidth: 1,
-        hideHover: 'auto',
-        lineColors: ['#1e88e5', '#f44336', '#9675ce'],
-        resize: true        
-    });
+    element: 'temp-pulse',
+    data: series,
+    xkey: 'period',
+    ykeys: ['temp', 'rate'],
+    labels: ['Temp', 'Heart rate'],
+    pointSize: 3,
+    fillOpacity: 0,
+    pointStrokeColors:['#00bfc7', '#fdc006'],
+    behaveLikeLine: true,
+    gridLineColor: '#e0e0e0',
+    lineWidth: 1,
+    hideHover: 'auto',
+    lineColors: ['#1e88e5', '#f44336', '#9675ce'],
+    resize: true        
+});

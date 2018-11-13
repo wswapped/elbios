@@ -4,4 +4,5 @@
 	if(!$conn){
 		die("Connection error ".$conn->connect_error);
 	}
+	$conn->query("SET timezone = '+2:00'");
 ?>

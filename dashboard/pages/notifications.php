@@ -79,7 +79,7 @@
                                                             </td>
                                                             <td class="hidden-xs"><i class="far fa-star"></i></td>
                                                             <td class="hidden-xs"><?=$userData['names']?></td>
-                                                            <td class="max-texts"> <a href="inbox-detail.html" /><span class="label label-info m-r-10">Work</span> <?=$notification['title']?></td>
+                                                            <td class="max-texts"> <a href="?id=<?=$notification['id']?>" /><span class="label label-info m-r-10">Work</span> <?=$notification['title']?></td>
                                                             <td class="hidden-xs"><i class="fa fa-paperclip"></i></td>
                                                             <td class="text-right"> <?php echo date('m:i', strtotime($sentDate)) ?></td>
                                                         </tr>

@@ -51,7 +51,7 @@ if($action == 'addData'){
 		//check if data was not send in a second ago
 		$minago = date("Y-m-d h:i:s", time() - 60); //timestamp for minute ago
 		$q = $conn->query("SELECT * FROM sensordata WHERE userCode = \"$userId\" AND createdDate >= \"$minago\" ");
-		if($q->num_rows){
+		if(!$q->num_rows){
 			$query = $conn->query("INSERT INTO sensordata(userCode, temp, rate, lat, lng) VALUES(\"$userId\", \"$temp\", \"$rate\", \"$lat\", \"$long\")");
 			if($query){
 				$response = 'done';

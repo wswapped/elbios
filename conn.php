@@ -4,5 +4,6 @@
 	if(!$conn){
 		die("Connection error ".$conn->connect_error);
 	}
+	date_default_timezone_set("Africa/Kigali");
 	// $conn->query("SET timezone = '+2:00'");
 ?>

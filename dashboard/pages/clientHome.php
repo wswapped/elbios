@@ -1,6 +1,7 @@
 <?php
     $data = $Client->latestData($currentUserId);
-    $Notifications = $Notification->list($currentUserId);
+    $notifications = $Notification->list($currentUserId);
+    $countMessages = count($notifications);
 ?>
 <div class="row">
     <div class="col-sm-12">
@@ -68,7 +69,7 @@
                             <span class="circle circle-md bg-warning"><i class="fas fa-user-md"></i></span>
                         </li>
                         <li class="col-last">
-                            <h3 class="counter text-right m-t-15">3</h3>
+                            <h3 class="counter text-right m-t-15"><?=$countMessages?></h3>
                         </li>
                         <li class="col-middle">
                             <h4>Doctor review</h4>

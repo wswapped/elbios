@@ -67,7 +67,7 @@
                             <span class="circle circle-md bg-warning"><i class="fas fa-user-md"></i></span>
                         </li>
                         <li class="col-last">
-                            <h3 class="counter text-right m-t-15">83</h3>
+                            <h3 class="counter text-right m-t-15">3</h3>
                         </li>
                         <li class="col-middle">
                             <h4>Doctor review</h4>
@@ -106,7 +106,7 @@
             <div class="row">
                 <div class="col-xs-8">
                     <h2 class="m-b-0 font-medium">Weekly heart beat</h2>
-                    <h5 class="text-muted m-t-0">80bpm</h5>
+                    <h5 class="text-muted m-t-0"><?=$data['rate']?>bpm</h5>
                 </div>
                 <div class="col-xs-4">
                     <div class="circle circle-md bg-info pull-right m-t-10 animated slideInUp"><i class="ti-heart"></i></div>
@@ -119,7 +119,7 @@
             <ul class="expense-box">
                 <li><i class="wi wi-day-cloudy text-white"></i>
                     <div>
-                        <h1 class="text-white m-b-0">23<sup>o</sup></h1>
+                        <h1 class="text-white m-b-0"><?=$data['temp']?><sup>o</sup></h1>
                         <h4 class="text-white">Clear and sunny</h4>
                     </div>
                 </li>

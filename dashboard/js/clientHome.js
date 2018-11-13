@@ -7,7 +7,7 @@ for(var i = userData.length-1; i>=0; i--){
 	stringDate = date.getHours()+""+date.getMinutes()
 	series.unshift({'period':date.getTime(), 'temp':sData['temp'], 'rate':sData['rate'], 'itouch':1})
 
-	if(n > 10)
+	if(n > 20)
 		break;
 }
 Morris.Area({

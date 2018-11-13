@@ -59,7 +59,7 @@ if($action == 'addData'){
 				$response = 'failed '.$conn->error;
 			}
 		}else{
-			$response = 'done';
+			$response = 'wait';
 		}
 
 		

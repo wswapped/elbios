@@ -25,7 +25,6 @@ include_once '../core/notification.php';
 
 $standard_date = "Y-m-d h:i:s";
 
-
 //gather all requests together
 $request = array_merge($_GET, $_POST);
 
